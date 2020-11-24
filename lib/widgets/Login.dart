@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart ';
+import 'package:flutter/material.dart';
 import 'package:flutter_social_ui/screens/Home.dart';
 
 import 'MyCustomClipper.dart';
