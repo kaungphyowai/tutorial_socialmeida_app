@@ -68,7 +68,14 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         body: ListView(
           children: [
             FollowingUsers(),
-            Posts(pageController: pageController),
+            Posts(pageController: pageController, title: "Posts", posts: posts),
+            RaisedButton(
+              onPressed: () {
+                var value = -100.34;
+                print(value.abs());
+              },
+              child: Text("Press Mes"),
+            ),
           ],
         ));
   }
