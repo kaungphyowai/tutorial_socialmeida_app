@@ -26,14 +26,96 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(
-              Icons.menu,
-              color: Theme.of(context).primaryColor,
-            ),
-            onPressed: () {},
+        drawer: Drawer(
+          child: Column(
+            children: [
+              Stack(
+                children: [
+                  Container(
+                    height: 200,
+                    width: double.infinity,
+                    child: Image(
+                      image: AssetImage(currentUser.backgroundImageUrl),
+                      height: 200,
+                      width: 200,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Positioned(
+                    left: 10.0,
+                    bottom: 10.0,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                color: Theme.of(context).primaryColor,
+                                width: 2),
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                offset: Offset(0, 2),
+                                blurRadius: 6.0,
+                              ),
+                            ],
+                          ),
+                          child: ClipOval(
+                            child: Image(
+                              height: 100,
+                              width: 100,
+                              fit: BoxFit.cover,
+                              image: AssetImage(currentUser.profileImageUrl),
+                            ),
+                          ),
+                        ),
+                        Text(
+                          currentUser.name,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Custom_ListTitle(
+                title: "Home",
+                icon: Icons.home,
+              ),
+              Custom_ListTitle(
+                title: "Chats",
+                icon: Icons.comment,
+              ),
+              Custom_ListTitle(
+                title: "Map",
+                icon: Icons.pin_drop,
+              ),
+              Custom_ListTitle(
+                title: "Profile",
+                icon: Icons.account_circle,
+              ),
+              Custom_ListTitle(
+                title: "Settings",
+                icon: Icons.settings,
+              ),
+              Expanded(
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Custom_ListTitle(
+                    title: "Log Out",
+                    icon: Icons.directions_walk,
+                  ),
+                ),
+              )
+            ],
           ),
+        ),
+        appBar: AppBar(
+          iconTheme: IconThemeData(color: Theme.of(context).primaryColor),
           backgroundColor: Colors.white,
           centerTitle: true,
           bottom: TabBar(controller: tabController, tabs: [
@@ -78,5 +160,23 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             ),
           ],
         ));
+  }
+}
+
+class Custom_ListTitle extends StatelessWidget {
+  final title;
+  final IconData icon;
+  Custom_ListTitle({this.title, this.icon});
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Icon(icon),
+      title: Text(
+        title,
+        style: TextStyle(
+          fontSize: 20,
+        ),
+      ),
+    );
   }
 }

@@ -34,22 +34,11 @@ class Posts extends StatelessWidget {
                 builder: (BuildContext context, Widget widget) {
                   double value = 1;
                   if (pageController.position.haveDimensions) {
-                    print("index: " + index.toString());
-                    print("have Dimention");
-                    print("pageController.poistion: " +
-                        pageController.position.toString());
-
-                    print("pageController.page: " +
-                        pageController.page.toString());
                     value = pageController.page - index;
-                    print('value after mius form pageController.page' +
-                        value.toString());
                     value = (1 - (value.abs() * 0.3)).clamp(0.0, 1.0);
-
-                    print('value after calculate: ' + value.toString());
                   }
                   return Center(
-                    child: Container(
+                    child: SizedBox(
                       height: Curves.easeInOut.transform(value) * 400,
                       child: widget,
                     ),
